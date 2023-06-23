@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Upload Website</title>
+  <style>
+    /* CSS for video list */
+    .video-list {
+      list-style: none;
+      padding: 0;
+    }
+    .video-list-item {
+      margin-bottom: 10px;
+    }
+    .video-list-item a {
+      display: block;
+    }
+
+    /* CSS for video animation */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    // JavaScript for video animation
+    function maximizeVideo(videoId) {
+      var videoContainer = document.getElementById('video-container');
+      videoContainer.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+    }
+  </script>
+</head>
+<body>
+  <h1>Video Upload Website</h1>
+
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="video" accept="video/*">
+    <input type="submit" value="Upload">
+  </form>
+
+  <h2>Video List</h2>
+  <ul class="video-list">
+    <li class="video-list-item">
+      <a href="#" onclick="maximizeVideo('VIDEO_ID_1')">Video 1</a>
+    </li>
+    <li class="video-list-item">
+      <a href="#" onclick="maximizeVideo('VIDEO_ID_2')">Video 2</a>
+    </li>
+    <!-- Add more video list items dynamically -->
+  </ul>
+
+  <div id="video-container" class="video-container"></div>
+</body>
+</html>
